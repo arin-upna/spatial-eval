@@ -37,11 +37,8 @@ every point misclassified by at least one model:
 
 $$
 \mathcal{H} =
-\left\{
-p_i \in X \;\middle|\;
-\exists m \in \mathcal{M},
-\hat{y}_i^{(m)} \neq y_i
-\right\}.
+\{p_i \in X : \exists m \in \mathcal{M},
+\hat{y}_i^{(m)} \neq y_i\}.
 $$
 
 All models are evaluated on the same subset $\mathcal{H}$. This removes
@@ -69,7 +66,7 @@ from dominating the results, the distance is clipped using the class-specific
 threshold $\tau_c$:
 
 $$
-d_i = \min\left(d_i^{\mathrm{raw}},\tau_{\hat{y}_i}\right).
+d_i = \min\{d_i^{\mathrm{raw}},\tau_{\hat{y}_i}\}.
 $$
 
 The Mean Distance Error for class $c$ averages the clipped distances of all
@@ -77,7 +74,7 @@ points predicted as that class:
 
 $$
 \mathrm{MDE}_c =
-\frac{1}{|X_{\hat{y}=c}|}
+\frac{1}{\lvert X_{\hat{y}=c}\rvert}
 \sum_{p_i \in X_{\hat{y}=c}} d_i,
 \qquad
 \mathrm{mMDE} =
@@ -87,25 +84,28 @@ $$
 The spatial distribution of the errors is summarized with:
 
 $$
-\rho_c =
-100\,
-\frac{
-\left|
-\left\{
-p_i:\hat{y}_i=c,\ y_i\neq c,\
-d_i^{\mathrm{raw}}>\tau_c
-\right\}
-\right|
-}{
-|X_c|
-},
+X_{\hat{y}=c}^{\mathrm{distant}} =
+\{p_i \in X : \hat{y}_i=c,\ y_i\neq c,
+d_i^{\mathrm{raw}}>\tau_c\},
+$$
+
+$$
+\rho_c = 100\,
+\frac{\lvert X_{\hat{y}=c}^{\mathrm{distant}}\rvert}
+{\lvert X_c\rvert},
 $$
 
 which measures the class-normalized proportion of distant errors, and
 
 $$
+X_{\hat{y}=c}^{\mathrm{near}} =
+\{p_i \in X : \hat{y}_i=c,\ y_i\neq c,
+d_i^{\mathrm{raw}}\leq\tau_c\},
+$$
+
+$$
 \mu_c =
-\frac{1}{|X_{\hat{y}=c}^{\mathrm{near}}|}
+\frac{1}{\lvert X_{\hat{y}=c}^{\mathrm{near}}\rvert}
 \sum_{p_i\in X_{\hat{y}=c}^{\mathrm{near}}} d_i,
 $$
 
