@@ -1,0 +1,33 @@
+dataset:
+  name: "FRACTAL"
+  source_format: ".laz"
+
+classes:
+  names:
+    1: "Other"
+    2: "Ground"
+    5: "Vegetation"
+    6: "Building"
+    9: "Water"
+    17: "Bridge"
+    64: "Permanent Structure"
+
+  # Class-specific thresholds tau_c (m), as reported in the paper.
+  distance_limits:
+    1: 10
+    2: 2
+    5: 3
+    6: 10
+    9: 10
+    17: 5
+    64: 10
+
+  # FRACTAL low, medium, and high vegetation are evaluated jointly.
+  grouping:
+    5: [3, 4, 5]
+
+  ignore_in_metrics: []
+
+evaluation:
+  match_by_name_only: true
+  dpi: 300

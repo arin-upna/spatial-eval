@@ -1,0 +1,32 @@
+dataset:
+  name: "DALES"
+  source_format: ".laz"
+
+classes:
+  names:
+    1: "Ground"
+    2: "Vegetation"
+    3: "Cars"
+    4: "Trucks"
+    5: "Power lines"
+    6: "Fences"
+    7: "Poles"
+    8: "Buildings"
+
+  # Class-specific thresholds tau_c (m), as reported in the paper.
+  distance_limits:
+    1: 2
+    2: 3
+    3: 5
+    4: 5
+    5: 5
+    6: 5
+    7: 5
+    8: 10
+
+  grouping: {}
+  ignore_in_metrics: []
+
+evaluation:
+  match_by_name_only: true
+  dpi: 300
